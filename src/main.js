@@ -31,15 +31,15 @@ k.loadSprite("player", "src/assets/sprites/player.png", {
         },
         "ATTACK": {
             from: 33,
-            to: 40,
+            to: 37,
             speed: 10,
-            loop: true,
+            loop: false,
           },
         "HURT": {
           from: 49,
           to: 54,
           speed: 10,
-          loop: true,
+          loop: false,
         },
     },
 });
