@@ -2,7 +2,7 @@ import {k} from '../main'
 
 
 export default ()=>[
-    k.pos(0,400),
+    k.pos(0,430),
     k.scale(1.5),
     k.sprite('player',{
         // sliceX: 10, // how many sprites are in the X axis
