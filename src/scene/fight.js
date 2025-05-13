@@ -1,53 +1,44 @@
-import {k} from '../main'
-import createPlaygroundObj from '../obj/playground'
-import createPlayerObj from '../obj/player'
-import createPlatformObj from '../obj/platform'
-import createEnemyObj from '../obj/enemy'
+import { k } from '../main';
+import createPlaygroundObj from '../obj/playground';
+import createPlayerObj from '../obj/player';
+import createPlatformObj from '../obj/platform';
+import setupPlayerControls from '../util/setupPlayerControls';
 
-import { PLAYER_SPEED } from '../constant'
-export default function createFightScene(){
-    k.scene("fight",()=>{
-        k.setGravity(640);
-        // add objects
-        const playground = k.add(createPlaygroundObj())
-        const player = k.add(createPlayerObj())
-        const platform = k.add(createPlatformObj())
-        const enemy = k.add(createEnemyObj())
-        player.play("IDLE");
-        
-        k.onKeyDown("left", () => {
-            if(player.pos.x <= 10) return
-            player.move(-PLAYER_SPEED, 0);
-            if (player.getCurAnim()?.name !== "IDLE") {
-                player.play("IDLE");
-            }
-        });
+export default function createFightScene() {
+  k.scene("fight", () => {
+    k.setGravity(640);
 
-        k.onKeyDown("right", () => {
-            if(player.pos.x >= k.width() - 10) return
-            player.move(PLAYER_SPEED, 0);
-            if (player.getCurAnim()?.name !== "RUN") {
-                player.play("RUN");
+    const playground = k.add(createPlaygroundObj());
+    const platform = k.add(createPlatformObj());
+
+    const player1 = k.add(createPlayerObj('1', 30, {
+        left: "a",
+        right: "d",
+        attack: "space",
+    }));
+
+    const player2 = k.add(createPlayerObj('2', 500, {
+      left: "left",
+      right: "right",
+      attack: "up",
+    }));
+    player2.flipX = true
+    player1.play("IDLE");
+    player2.play("IDLE");
+
+    k.onUpdate(() => {
+        if (player1.pos.dist(player2.pos) < 100) { // only flip if they're close
+            if (player1.pos.x < player2.pos.x) {
+            player1.flipX = false
+            player2.flipX = true
+            } else {
+            player1.flipX = true
+            player2.flipX = false
             }
-        });
-        ["left", "right"].forEach((key) => {
-            k.onKeyRelease(key, () => {
-                if (!k.isKeyDown("left") && !k.isKeyDown("right")) {
-                    player.play("IDLE");
-                }
-            });
-        });
-        k.onKeyDown("space",()=>{
-            if(player.getCurAnim()?.name !== "ATTACK"){
-                player.play("ATTACK")
-                setTimeout(()=>{
-                    player.play("IDLE")
-                },500)
-            }
-        })
-        player.onCollide("enemy", (enemy) => {
-            k.destroy(enemy);
-        });
-    })
+        }
+    });
+
+    setupPlayerControls(k, player1, player2);
+    setupPlayerControls(k, player2, player1);
+  });
 }
-
