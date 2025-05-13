@@ -13,24 +13,19 @@ const kaplayOptions = {
 export const k = kaplay(kaplayOptions);
 
 k.loadSprite('background', 'src/assets/background.jpg')
-// k.loadSprite('player', '../public/player/IDLE.png')
 k.loadSprite("player", "src/assets/sprites/player.png", {
-    // The image contains 9 frames layed out horizontally, slice it into individual frames
     sliceX: 16,
     sliceY: 4,
-    // Define animations
     anims: {
         "IDLE": {
-            // Starts from frame 0, ends at frame 3
             from: 0,
             to: 9,
-            // Frame per second
             speed: 5,
             loop: true,
         },
         "RUN": {
             from: 16,
-            to: 32,
+            to: 30,
             speed: 10,
             loop: true,
         },
@@ -40,14 +35,12 @@ k.loadSprite("player", "src/assets/sprites/player.png", {
             speed: 10,
             loop: true,
           },
-          "HEART": {
-            from: 49,
-            to: 54,
-            speed: 10,
-            loop: true,
-          },
-        // // This animation only has 1 frame
-        // "JUMP": 8,
+        "HURT": {
+          from: 49,
+          to: 54,
+          speed: 10,
+          loop: true,
+        },
     },
 });
 
