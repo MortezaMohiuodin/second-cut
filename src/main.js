@@ -1,12 +1,14 @@
 import kaplay from "kaplay";
 // import "kaplay/global"; // uncomment if you want to use without the k. prefix
 import createFightScene from "./scene/fight";
+import createIntroScene from "./scene/intro";
+
 import {GAME_WIDTH , GAME_HEIGHT} from './constant'
 const kaplayOptions = {
     width: GAME_WIDTH,
     height: GAME_HEIGHT,
     letterbox: true,
-    // pixelDensity: Math.min(window.devicePixelRatio, 2), // crispier on phones
+    pixelDensity: Math.min(window.devicePixelRatio, 2), // crispier on phones
     background: "#000000",
 }
 
@@ -44,11 +46,44 @@ k.loadSprite("player", "src/assets/sprites/player.png", {
     },
 });
 
+k.loadSprite("player2", "src/assets/sprites/player-2.png", {
+    sliceX: 15,
+    sliceY: 9,
+    anims: {
+        "IDLE": {
+            from: 0,
+            to: 3,
+            speed: 5,
+            loop: true,
+        },
+        "RUN": {
+            from: 31,
+            to: 35,
+            speed: 10,
+            loop: true,
+        },
+        "ATTACK": {
+            from: 105,
+            to: 114,
+            speed: 10,
+            loop: false,
+          },
+        "HURT": {
+          from: 74,
+          to: 80,
+          speed: 10,
+          loop: false,
+        },
+    },
+});
+
+
 k.loadRoot("./"); // A good idea for Itch.io publishing later
 createFightScene()
-
+createIntroScene()
 async function main() {
-  k.go("fight");
+  k.go("intro");
+  // k.go("fight");
 }
 
 main();

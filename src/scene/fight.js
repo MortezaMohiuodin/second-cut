@@ -11,13 +11,13 @@ export default function createFightScene() {
     const playground = k.add(createPlaygroundObj());
     const platform = k.add(createPlatformObj());
 
-    const player1 = k.add(createPlayerObj('1', 30, {
+    const player1 = k.add(createPlayerObj('1', 100, {
         left: "a",
         right: "d",
         attack: "space",
     }));
 
-    const player2 = k.add(createPlayerObj('2', 500, {
+    const player2 = k.add(createPlayerObj('2', k.width() - 100, {
       left: "left",
       right: "right",
       attack: "up",
