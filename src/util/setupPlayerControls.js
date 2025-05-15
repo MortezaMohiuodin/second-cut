@@ -42,7 +42,7 @@ export default function setupPlayerControls(k, player, opponent) {
     const attackBox = k.add(createAttackObj(player));
     attackBox.onCollide(opponent.name, (enemy) => {
       k.wait(0.4, () => {
-        k.destroy(enemy);
+        // k.destroy(enemy);
       });
     });
 

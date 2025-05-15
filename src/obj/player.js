@@ -15,6 +15,7 @@ export default (id,startPos,controls)=>[
     {
         name : `player${id}`,
         isAttacking: false,
+        facing: id == '1' ? 'right' : 'left',
         controls
     }
 ]
