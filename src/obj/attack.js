@@ -6,7 +6,7 @@ export default (player)=>[
     k.area(),
     k.lifespan(0.2), // disappear after 0.2s
     k.color(RED),
-    k.opacity(0),
+    k.opacity(),
     "attack",
 ]
 

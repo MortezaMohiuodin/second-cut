@@ -23,8 +23,8 @@ export default function createFightScene() {
       attack: "up",
     }));
     player2.flipX = true
-    player1.play("IDLE");
-    player2.play("IDLE");
+    // player1.play("IDLE");
+    // player2.play("IDLE");
 
     k.onUpdate(() => {
         if (player1.pos.dist(player2.pos) < 100) { // only flip if they're close

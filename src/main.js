@@ -82,8 +82,8 @@ k.loadRoot("./"); // A good idea for Itch.io publishing later
 createFightScene()
 createIntroScene()
 async function main() {
-  k.go("intro");
-  // k.go("fight");
+  // k.go("intro");
+  k.go("fight");
 }
 
 main();
