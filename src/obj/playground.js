@@ -1,6 +1,5 @@
 import {k} from '../main'
 
-
 export default ()=>[
     k.pos(),
     k.z(0),

@@ -15,10 +15,10 @@ export default (id,startPos,controls)=>[
      `player${id}`,
     {
         name : `player${id}`,
-        isAttacking: false,
+        isAttacking: false, // remove later
         facing: id == '1' ? 'right' : 'left',
-        guard : null, // 'up' | 'down' | 'middle'
-        attack : null, // 'up' | 'down' | 'middle'
+        guard : null, // 'up' | 'down' | 'middle' remove later
+        attack : null, // 'up' | 'down' | 'middle' remove later
         controls,
         dir: k.vec2(1,0),
         actionState : 'idle'  // "idle", "walk", "attack", "guard", "hit", "dead"

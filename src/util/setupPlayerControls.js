@@ -1,8 +1,8 @@
-import { PLAYER_SPEED } from "../constant";
+import { PLAYER_SPEED , CONTROLS } from "../constant";
 import createAttackObj from "../obj/attack";
 
 export default function setupPlayerControls(k, player, opponent) {
-  const { left, right, attack , up , down} = player.controls;
+  const { left, right, attack , up , down , duck , push} = player.controls;
 
   // Movement
   k.onKeyDown(left, () => {
