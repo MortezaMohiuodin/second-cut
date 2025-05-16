@@ -2,7 +2,7 @@ import { PLAYER_SPEED } from "../constant";
 import createAttackObj from "../obj/attack";
 
 export default function setupPlayerControls(k, player, opponent) {
-  const { left, right, attack } = player.controls;
+  const { left, right, attack , up , down} = player.controls;
 
   // Movement
   k.onKeyDown(left, () => {
@@ -21,6 +21,23 @@ export default function setupPlayerControls(k, player, opponent) {
       //   player.play("RUN");
       // }
     }
+  })
+   k.onKeyDown(up, () => {
+    player.guard = 'up'
+    player.color = BLUE
+  });
+   k.onKeyRelease(up, () => {
+    player.guard = null
+    player.color = WHITE
+  });
+
+   k.onKeyDown(down, () => {
+    player.guard = 'down'
+    player.color = YELLOW
+  });
+   k.onKeyRelease(down, () => {
+    player.guard = null 
+    player.color = WHITE
   });
 
   // Release - stop animation when keys released
@@ -39,10 +56,17 @@ export default function setupPlayerControls(k, player, opponent) {
     player.isAttacking = true;
     // player.play("ATTACK");
 
-    const attackBox = k.add(createAttackObj(player));
+    const attackBox = k.add(createAttackObj(player,'middle'));
     attackBox.onCollide(opponent.name, (enemy) => {
-      k.wait(0.4, () => {
-        // k.destroy(enemy);
+      k.wait(0.2, () => {
+        enemy.hurt(1)
+        if(enemy.hp() <= 0){
+          k.destroy(enemy);
+        }
+        enemy.color = BLACK
+        k.wait(.3,()=>{
+          enemy.color = WHITE
+        })
       });
     });
 

@@ -15,12 +15,16 @@ export default function createFightScene() {
         left: "a",
         right: "d",
         attack: "space",
+        up : 'w',
+        down : 's'
     }));
 
     const player2 = k.add(createPlayerObj('2', k.width() - 100, {
       left: "left",
       right: "right",
-      attack: "up",
+      attack: "control",
+      up : 'up',
+      down : 'down'
     }));
     player2.flipX = true
     // player1.play("IDLE");
