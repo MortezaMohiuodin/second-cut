@@ -59,9 +59,17 @@ export default function setupPlayerControls(k, player, opponent) {
     const attackBox = k.add(createAttackObj(player,'middle'));
     attackBox.onCollide(opponent.name, (enemy) => {
       k.wait(0.2, () => {
-        enemy.hurt(1)
-        if(enemy.hp() <= 0){
+        enemy.hp -= 1
+        if(enemy.hp <= 0){
           k.destroy(enemy);
+          player.score += 1
+          k.wait(1,()=>{
+            player.pos = k.vec2(40, k.height() -20);
+            opponent.pos = k.vec2(k.width() - 40, k.height()-20);
+            player.hp = 2
+            enemy.hp = 2
+            k.go('fight')
+          })
         }
         enemy.color = BLACK
         k.wait(.3,()=>{
