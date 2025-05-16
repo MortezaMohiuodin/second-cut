@@ -3,7 +3,7 @@
 import kaplay from "kaplay";
 import {GAME_WIDTH , GAME_HEIGHT,BACKGROUND_COLOR,CONTROLS} from './constant'
 import {createFightScene,createIntroScene} from "./scene";
-import loadSprites from "./sprite";
+import loadSprites from "./sprite"; 
 import createPlayerObj from './obj/player';
 
 const kaplayOptions = {
